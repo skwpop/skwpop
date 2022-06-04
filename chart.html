@@ -1,0 +1,65 @@
+<html>
+<head>
+</head>
+<body>
+<h1>chart 예제</h1>
+<div style = "width:95vw">
+   <canvas id = "myChart"></canvas>
+</div>
+<div>
+ <button onclick='settype("line")'>line</button> 
+ <button onclick='settype("pie")'>pie</button> 
+ <button onclick='settype("doughnut")'>doughnut</button> 
+ <button onclick='settype("bar")'>bar</button>
+ <button onclick='settype("polarArea")'>polarArea</button>
+<button onclick='settype("bubble")'>bubble</button>
+<button onclick='settype("scatter")'>scatter</button>
+<button onclick='adddata()'>추가</button>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  const labels = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+  ];
+
+  const data = {
+    labels: labels,
+    datasets: [{
+      label: 'My First chart',
+      backgroundColor: 'rgb(255, 99, 132)',
+      borderColor: 'rgb(255, 99, 132)',
+      data: [99, 10, 5, 2, 20, 30, 10],
+    }]
+  };
+
+  const config = {
+    type: 'bar',     //    'radar' 'bar',   'pie',      'doughnut', polarArea', 
+    data: data,
+    options: {}
+  };
+</script>
+<script>
+  const myChart = new Chart(
+    document.getElementById('myChart'),
+    config
+  );
+function settype(t) {
+  config.type = t
+  myChart.update()
+  
+}
+function adddata() {
+     data.datasets[0].data.push(Math.floor(Math.random()*100))
+      data.labels.push("new time")
+       myChart.update()     
+}
+</script>
+
+</body>
+</html>
